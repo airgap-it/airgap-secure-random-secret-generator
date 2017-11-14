@@ -1,0 +1,24 @@
+{
+  "name": "airgap-secure-random-secret-generator",
+  "version": "1.0.0",
+  "description": "An offline secure random secret generator, which uses various sources as entropy source for secret generation. Code is clean and easy to review.",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify src/app.js -t [ babelify --presets [ es2015 ] ] -o static/bundle.js",
+    "watch": "watchify src/app.js -t [ babelify --presets [ es2015 ] ] -o static/bundle.js --debug --verbose"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^7.3.0",
+    "bip39": "^2.3.1",
+    "js-sha3": "^0.6.1"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "standard": "^10.0.2",
+    "watchify": "^3.9.0"
+  }
+}

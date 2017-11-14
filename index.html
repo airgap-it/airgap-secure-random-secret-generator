@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AirGap.it - Offline Ethereum Signer</title>
+    <link rel="stylesheet" href="./static/styles/bulma.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<nav class="navbar ">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <img src="./static/images/airgap_logo.png" height="28">
+            </a>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="#" class="navbar-item">
+                        Signer
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <a href="#" class="navbar-item" onclick="showModal('disclaimer_modal')">
+                        Disclaimer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="section">
+    <div class="container">
+        <h1 class="title">AirGap.it - Offline Secure Random Secret Generator</h1>
+        <h2 class="subtitle">
+            An opensource easy to review Secure Random Secret Generator. Intended to be used for air-gapped setups.
+        </h2>
+
+        <br/>
+        <video></video>
+        <canvas hidden></canvas>
+
+        <div class="field is-grouped is-grouped-multiline">
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">video entropy</span>
+                    <span id="video_entropy_span" class="tag is-info">0</span>
+                </div>
+            </div>
+
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">audio entropy</span>
+                    <span id="audio_entropy_span" class="tag is-info">0</span>
+                </div>
+            </div>
+
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">mouse entropy</span>
+                    <span id="mouse_entropy_span" class="tag is-info"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Mnemonic Code</label>
+            <p class="control">
+                            <textarea id="mnemonic_code" class="textarea" readonly disabled></textarea>
+            </p>
+        </div>
+
+
+        <button id="generate_secret" class="button is-primary" onclick="generateSecret()">
+            Generate Secret
+        </button>
+    </div>
+</section>
+
+<div id="error_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Error</p>
+            <button class="delete" onclick="dismissModal('error_modal')"></button>
+        </header>
+        <section class="modal-card-body">
+            <span id="error_message"></span>
+            <!-- Content ... -->
+        </section>
+        <footer class="modal-card-foot">
+            <a class="button" onclick="dismissModal('error_modal')">Cancel</a>
+        </footer>
+    </div>
+</div>
+
+<div id="disclaimer_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Disclaimer</p>
+            <button class="delete" onclick="dismissModal('disclaimer_modal')"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>
+                Be safe & secure: We highly recommend that you read our guide on How to Prevent Loss & Theft for
+                some
+                recommendations on how to be proactive about your security.
+            </p>
+
+            <p>
+                Always backup your keys on paper: AirGap is not using any form of persistence, if you forget to
+                write
+                down
+                your keys, they're gone forever. There's no going back.
+            </p>
+
+            <p>
+                We are not responsible for any loss: Ethereum, AirGap.it Signer and AirGap.it Broadcaster, and some
+                of
+                the
+                underlying
+                Javascript libraries we use are under active development. While we have thoroughly tested & tens of
+                thousands of
+                wallets have been successfully created by people all over the globe, there is always the possibility
+                something
+                unexpected happens that causes your funds to be lost. Please do not invest more than you are willing
+                to
+                lose, and
+                please be careful.
+            </p>
+
+            <p>
+                Translations of AirGap.it: The community has done an amazing job translating AirGap.it into a
+                variety of
+                languages. However, AirGap.it can only verify the validity and accuracy of the information provided
+                in
+                English
+                and, because of this, the English version of our website is the official text.
+            </p>
+
+            <p>
+                MIT License Copyright © 2017 AirGap.it
+            </p>
+            <p>
+                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+                associated
+                documentation files (the "Software"), to deal in the Software without restriction, including without
+                limitation the
+                rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+                Software,
+                and
+                to
+                permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+                The above copyright notice and this permission notice shall be included in all copies or substantial
+                portions of the
+                Software.
+            </p>
+            <p>
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+                NOT
+                LIMITED TO THE
+                WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+                SHALL
+                THE
+                AUTHORS
+                OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+                CONTRACT,
+                TORT OR
+                OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                THE
+                SOFTWARE.
+            </p>
+        </section>
+        <footer class="modal-card-foot">
+            <a class="button" onclick="dismissModal('disclaimer_modal')">OK</a>
+        </footer>
+    </div>
+</div>
+
+<script src="static/bundle.js"></script>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                <strong>AirGap.it</strong> v.1.0.0. The source code is licensed MIT.
+            </p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
