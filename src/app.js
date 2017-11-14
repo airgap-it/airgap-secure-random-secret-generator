@@ -50,9 +50,8 @@ import bip39 from 'bip39'
     video.src = window.URL.createObjectURL(stream)
     video.onloadedmetadata = function (e) {
       video.play()
-      setTimeout(handleFrame, 100)
+      setTimeout(processImageFrame, 100)
     }
-    console.log('stream')
   }
 
   function handleMotion(event){
@@ -63,7 +62,7 @@ import bip39 from 'bip39'
     seedEntropy(previousMouseArrayBuffer)
   }
 
-  function handleFrame () {
+  function processImageFrame () {
     const canvas = document.querySelector('canvas')
     const context = canvas.getContext('2d')
     context.drawImage(video, 0, 0)
@@ -72,11 +71,11 @@ import bip39 from 'bip39'
     }
     previousVideoArrayBuffer = context.getImageData(0, 0, video.videoWidth, video.videoHeight).data
     seedEntropy(previousVideoArrayBuffer)
-    setTimeout(handleFrame, 100)
+    setTimeout(processImageFrame, 100)
   }
 
   function seedEntropy(array){
-    hash.update(hash.array().concat(array))
+    hash.update(hash.array().concat(array).toString())
     document.getElementById("video_entropy_span").innerHTML=videoEntropy.toFixed(2)
     document.getElementById("audio_entropy_span").innerHTML=audioEntropy.toFixed(2)
     document.getElementById("mouse_entropy_span").innerHTML=mouseEntropy.toFixed(2)
