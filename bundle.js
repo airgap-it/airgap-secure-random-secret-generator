@@ -22870,7 +22870,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     video.src = window.URL.createObjectURL(stream);
     video.onloadedmetadata = function (e) {
       video.play();
-      setTimeout(handleFrame, 100);
+      setTimeout(processImageFrame, 100);
     };
     console.log('stream');
   }
@@ -22883,7 +22883,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     seedEntropy(previousMouseArrayBuffer);
   }
 
-  function handleFrame() {
+  function processImageFrame() {
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
     context.drawImage(video, 0, 0);
@@ -22892,11 +22892,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
     previousVideoArrayBuffer = context.getImageData(0, 0, video.videoWidth, video.videoHeight).data;
     seedEntropy(previousVideoArrayBuffer);
-    setTimeout(handleFrame, 100);
+    setTimeout(processImageFrame, 100);
   }
 
   function seedEntropy(array) {
-    hash.update(hash.array().concat(array));
+    hash.update(hash.array().concat(array).toString());
     document.getElementById("video_entropy_span").innerHTML = videoEntropy.toFixed(2);
     document.getElementById("audio_entropy_span").innerHTML = audioEntropy.toFixed(2);
     document.getElementById("mouse_entropy_span").innerHTML = mouseEntropy.toFixed(2);
