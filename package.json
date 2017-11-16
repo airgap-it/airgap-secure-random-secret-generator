@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify src/app.js -t [ babelify --presets [ es2015 ] ] -o static/bundle.js",
-    "watch": "watchify src/app.js -t [ babelify --presets [ es2015 ] ] -o static/bundle.js --debug --verbose"
+    "watch": "watchify src/app.js -t [ babelify --presets [ es2015 ] ] -o static/bundle.js --debug --verbose",
+    "deploy": "git subtree push --prefix static origin gh-pages"
   },
   "author": "",
   "license": "MIT",

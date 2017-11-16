@@ -22872,7 +22872,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       video.play();
       setTimeout(processImageFrame, 100);
     };
-    console.log('stream');
   }
 
   function handleMotion(event) {
