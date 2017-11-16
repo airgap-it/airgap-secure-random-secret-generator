@@ -13,7 +13,7 @@ For a more complete step by step installation instruction and how to do a secure
 `npm run build`
 
 ### 3. Run
-Go to the directory and open `index.html`
+Go to the `static` directory and open `index.html`
 
 ## Develop
 `npm run watch`
